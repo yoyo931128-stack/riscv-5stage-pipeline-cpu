@@ -1,4 +1,6 @@
 # riscv-5stage-pipeline-cpu
+# RISC-V RV32I 5-Stage Pipeline CPU
+
 中央處理元件 課程期末專題｜指導教授：張孟洲｜2026.06
 
 以本系林慶樺學長之 MIPS R2000 五級管線設計為藍本，全面改寫為 RISC-V RV32I
@@ -16,10 +18,10 @@
 
 ## 檔案結構
 
-- `riscv-github/src/` — Verilog 模組原始碼，含 `data.txt`（暫存器初值）與 `inst.txt`（當前載入的機器碼）
-- `riscv-github/testbench/` — testbench
-- `riscv-github/testcode/` — 四支測試程式（.asm 原始碼與對應機器碼 txt）
-- `riscv-github/report/` — 完整專題報告 PDF
+- `src/` — Verilog 模組原始碼，含 `data.txt`（暫存器初值）與 `inst.txt`（當前載入的機器碼）
+- `testbench/` — testbench
+- `testcode/` — 四支測試程式（.asm 原始碼與對應機器碼 txt）
+- `report/` — 完整專題報告 PDF
 
 ## 使用方式
 
@@ -40,10 +42,11 @@
 | `CMDtest.asm` | 全面驗證 RV32I 指令集 |
 
 模擬結果以 ModelSim 波形與 Venus 模擬器交叉比對驗證。
+外部中斷路徑目前於 testbench 中綁定為 0，未納入測試範圍。
 
 ## 已知限制
 
 - CSR Hazard 目前以手動插入 NOP 迴避，正規做法應由硬體 Stall
 - `mret` 指令尚未實作，中斷處理程式僅記錄現場而未實際處理
-- ECALL 例外碼實作為 8（U-mode），因本設計為純 M-mode，依規範應為 11
+- mcause 的 ECALL 例外碼與 Interrupt bit 尚未完全對齊 RISC-V 規範
 - 僅做功能層級行為模擬，未進行邏輯合成與時序分析
