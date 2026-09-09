@@ -1,5 +1,4 @@
 # riscv-5stage-pipeline-cpu
-# RISC-V RV32I 5-Stage Pipeline CPU
 
 中央處理元件 課程期末專題｜指導教授：張孟洲｜2026.06
 
