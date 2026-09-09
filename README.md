@@ -16,19 +16,19 @@
 
 ## 檔案結構
 
-- `src/` — Verilog 模組原始碼
-- `tb/` — testbench
-- `test/` — 四支測試程式（.asm 原始碼與對應機器碼 txt）
-- `data.txt` — 暫存器初值設定
-- `doc/` — 完整專題報告 PDF
+- `riscv-github/src/` — Verilog 模組原始碼，含 `data.txt`（暫存器初值）與 `inst.txt`（當前載入的機器碼）
+- `riscv-github/testbench/` — testbench
+- `riscv-github/testcode/` — 四支測試程式（.asm 原始碼與對應機器碼 txt）
+- `riscv-github/report/` — 完整專題報告 PDF
 
 ## 使用方式
 
-1. 將欲測試的機器碼 txt 檔複製到 Verilog 原始碼所在目錄
-2. 將該檔案更名為 `inst`
+1. 從 `testcode/` 選擇欲測試的機器碼檔（例如 `inst_hazard.txt`）
+2. 複製到 `src/` 目錄下，並更名為 `inst.txt`（覆蓋原檔）
 3. Compile 後即可用 ModelSim 模擬
 
-`data.txt` 為暫存器初值設定，無必要請勿更動。
+`src/data.txt` 為暫存器初值設定，無必要請勿更動。
+目前 `src/inst.txt` 預載的是 `CMDtest` 的機器碼。
 
 ## 測試程式
 
@@ -45,4 +45,5 @@
 
 - CSR Hazard 目前以手動插入 NOP 迴避，正規做法應由硬體 Stall
 - `mret` 指令尚未實作，中斷處理程式僅記錄現場而未實際處理
+- ECALL 例外碼實作為 8（U-mode），因本設計為純 M-mode，依規範應為 11
 - 僅做功能層級行為模擬，未進行邏輯合成與時序分析
